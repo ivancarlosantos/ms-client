@@ -11,6 +11,6 @@ public class ClientModelApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClientModelApplication.class, args);
-		log.info("Application UP ["+HttpStatus.OK+"]");
+		log.info("Client UP ["+HttpStatus.OK+"]");
 	}
 }
