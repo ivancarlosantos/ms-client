@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -13,8 +17,14 @@ import java.io.Serializable;
 @SuperBuilder
 @Getter
 @Setter
+@Entity
 public class Client implements Serializable {
 
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Long nodId;
+    private Integer age;
+    private String document;
 }

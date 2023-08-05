@@ -5,9 +5,37 @@ spring:
   application:
     name: ms-client
 
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/client
+    username: postgres
+    password: root
+
   zipkin:
     base-url: http://localhost:9411
 
   sleuth:
     sampler:
       probability: 1.0
+      
+
+
+
+
+  # Hibernate Configuration
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Logging Configuration
+logging:
+  level:
+    org.springframework: INFO
+    com.example: DEBUG
+
+# Server Configuration
