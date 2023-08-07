@@ -24,7 +24,7 @@ public class Client implements Serializable {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long nodId;
+    private String nodId;
     private Integer age;
     private String document;
 }
