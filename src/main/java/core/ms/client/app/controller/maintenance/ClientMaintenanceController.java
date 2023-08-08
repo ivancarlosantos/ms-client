@@ -48,4 +48,10 @@ public class ClientMaintenanceController {
                 .buildAndExpand(clientRequest.getId()).toUri();
         return ResponseEntity.created(uri).body(clientRequest);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        clientService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

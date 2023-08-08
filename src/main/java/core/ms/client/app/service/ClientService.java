@@ -48,4 +48,8 @@ public class ClientService {
         client.setNodId(clientRequest.getNodId());
         return new ClientRequest(client);
     }
+
+    public void delete(Long id) {
+        clientRepository.deleteById(id);
+    }
 }
