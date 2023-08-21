@@ -21,14 +21,7 @@ public class ClientRequest implements Serializable {
     private Integer age;
     private String document;
     private String nodId;
+    private String status;
 
-    public ClientRequest(Client client) {
-        this.name = client.getName();
-        this.id = client.getId();
-        this.age = client.getAge();
-        this.document = client.getDocument();
-        this.nodId = client.getNodId();
-
-    }
 
 }
