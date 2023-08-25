@@ -15,8 +15,7 @@ jobs:
         uses: actions/setup-java@v3.12.0
         with:
           java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+          distribution: 'adopt'
 
       - name: Build with Maven
         run: mvn -B package -DskipTests=true --file pom.xml
