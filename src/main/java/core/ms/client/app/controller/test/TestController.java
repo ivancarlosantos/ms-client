@@ -1,6 +1,6 @@
-package core.ms.client.app.controller;
+package core.ms.client.app.controller.test;
 
-import core.ms.client.app.service.TestService;
+import core.ms.client.app.service.test.TestService;
 import core.ms.client.infra.domain.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

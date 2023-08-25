@@ -1,4 +1,4 @@
-package core.ms.client.app.dto.request;
+package core.ms.client.infra.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,18 +7,17 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 @Getter
 @Setter
-public class ClientRequest implements Serializable {
+public class Token implements Serializable {
 
-    private Long id;
-    private String name;
-    private Integer age;
-    private String document;
-    private String nodeID;
-    private String status;
+    private UUID id;
+    private String token;
+    private LocalDateTime timestamp;
 }

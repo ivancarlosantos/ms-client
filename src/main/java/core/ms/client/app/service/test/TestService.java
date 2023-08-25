@@ -1,4 +1,4 @@
-package core.ms.client.app.service;
+package core.ms.client.app.service.test;
 
 import core.ms.client.infra.domain.Test;
 import org.springframework.stereotype.Service;

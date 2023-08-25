@@ -14,6 +14,6 @@ WORKDIR /usr/src/app
 
 COPY --from=build /app/target/*.jar client.jar
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["java", "-jar", "client.jar"]

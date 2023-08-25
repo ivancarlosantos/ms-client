@@ -20,11 +20,12 @@ import java.io.Serializable;
 @Entity
 public class Client implements Serializable {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String nodId;
     private Integer age;
     private String document;
+    private String nodeID;
+    private String status;
 }

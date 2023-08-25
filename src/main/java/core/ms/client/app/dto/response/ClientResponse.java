@@ -1,6 +1,5 @@
 package core.ms.client.app.dto.response;
 
-import core.ms.client.infra.domain.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +19,7 @@ public class ClientResponse implements Serializable {
     private String name;
     private Integer age;
     private String document;
+    private String nodeID;
+    private String status;
 
 }
