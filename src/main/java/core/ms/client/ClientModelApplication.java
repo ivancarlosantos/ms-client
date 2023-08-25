@@ -11,8 +11,8 @@ import org.springframework.http.HttpStatus;
 @EnableFeignClients
 public class ClientModelApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ClientModelApplication.class, args);
-		log.info("Client UP ["+HttpStatus.OK+"]");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ClientModelApplication.class, args);
+        log.info("Client UP [" + HttpStatus.OK + "]");
+    }
 }

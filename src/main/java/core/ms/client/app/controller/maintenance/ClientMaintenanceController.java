@@ -20,7 +20,7 @@ public class ClientMaintenanceController {
 
 
     @PostMapping(path = "/save")
-    public ResponseEntity<ClientResponse> persist(@RequestBody ClientRequest request){
+    public ResponseEntity<ClientResponse> persist(@RequestBody ClientRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(clientMaintenanceService.save(request));
