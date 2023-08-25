@@ -14,8 +14,8 @@ jobs:
         uses: actions/setup-java@v3.12.0
         with:
           java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+          distribution: 'adopt'
+          
       - name: Build with Maven
         run: mvn -B package -DskipTests=true --file pom.xml
 
@@ -23,7 +23,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.6.0
 
       - name: list Directories
         run: ls -lha
@@ -44,7 +44,7 @@ jobs:
     needs: [build, version_verify]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.6.0
 
       - name: Test Application
         run: |
@@ -56,7 +56,7 @@ jobs:
     needs: [QA-Test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.6.0
 
       - name: Test Application
         run: mvn clean verify -DskipTests=true
@@ -65,7 +65,7 @@ jobs:
     needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.6.0
 
       - name: Deploy Application
         run: |
