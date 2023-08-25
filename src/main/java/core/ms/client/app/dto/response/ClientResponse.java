@@ -20,5 +20,7 @@ public class ClientResponse implements Serializable {
     private String name;
     private Integer age;
     private String document;
+    private String status;
+
 
 }
