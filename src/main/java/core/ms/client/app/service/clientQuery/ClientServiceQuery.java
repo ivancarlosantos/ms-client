@@ -35,6 +35,7 @@ public class ClientServiceQuery {
 
         return mapper.map(clientList, tipo);
 
+
     }
 
     public ClientResponse findById(Long id) {
