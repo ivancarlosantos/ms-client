@@ -20,7 +20,7 @@ public class ClientRequest implements Serializable {
     private String name;
     private Integer age;
     private String document;
-    private String nodId;
+    private String nodeId;
     private String status;
 
 

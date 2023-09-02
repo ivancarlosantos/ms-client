@@ -21,6 +21,7 @@ public class ClientResponse implements Serializable {
     private Integer age;
     private String document;
     private String status;
+    private String nodeId;
 
 
 }
