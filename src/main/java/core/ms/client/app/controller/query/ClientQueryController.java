@@ -17,21 +17,18 @@ import java.util.List;
 @RequestMapping(path = "/domain/client")
 public class ClientQueryController {
 
-
     @Autowired
     private ClientServiceQuery clientQueryService;
 
     @GetMapping
     public ResponseEntity<List<ClientResponse>> findAll() {
-        List<ClientResponse> listClient = clientQueryService.convertEntityToDTOList();
+        List<ClientResponse> listClient = clientQueryService.listAll();
         return ResponseEntity.status(HttpStatus.OK).body(listClient);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientResponse> findById(@PathVariable(name = "id") String id) {
-        Long value = ValidationParameter.validateParamLong(id);
-        ClientResponse response = clientQueryService.getById(value);
+    public ResponseEntity<ClientResponse> findById(@PathVariable(name = "id") String value) {
+        ClientResponse response = clientQueryService.findByID(value);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
 }

@@ -21,5 +21,6 @@ public class ClientResponse implements Serializable {
     private String document;
     private String nodeID;
     private String status;
+    private String nodeId;
 
 }

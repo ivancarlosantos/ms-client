@@ -1,6 +1,7 @@
 package core.ms.client.app.service.query;
 
 import core.ms.client.app.dto.response.ClientResponse;
+import core.ms.client.cross.utils.ValidationParameter;
 import core.ms.client.exceptions.BusinessException;
 import core.ms.client.infra.domain.Client;
 import core.ms.client.infra.repository.ClientRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -24,7 +26,7 @@ public class ClientServiceQuery {
     @Autowired
     private ModelMapper mapper;
 
-    public List<ClientResponse> convertEntityToDTOList() {
+    public List<ClientResponse> listAll() {
         log.info("[getAll] Fetch");
         List<Client> clientDomain = clientRepository
                 .findAll()
@@ -36,9 +38,9 @@ public class ClientServiceQuery {
         return mapper.map(clientDomain, listType);
     }
 
-    public ClientResponse getById(Long id){
-        log.info("[getById] - Fetch id {}", id);
-        Client client = clientRepository.findById(id).orElseThrow(() -> new BusinessException(""));
-        return mapper.map(client, ClientResponse.class);
+    public ClientResponse findByID(String value){
+        Long id = ValidationParameter.validateParamLong(value);
+        Optional<Client> find = Optional.of(clientRepository.findById(id).orElseThrow(() -> new BusinessException("Client ID: "+id+" NOT FOUND")));
+        return mapper.map(find.get(), ClientResponse.class);
     }
 }

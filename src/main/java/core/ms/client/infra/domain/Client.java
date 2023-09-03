@@ -18,7 +18,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-
 public class Client implements Serializable {
 
     @Id
