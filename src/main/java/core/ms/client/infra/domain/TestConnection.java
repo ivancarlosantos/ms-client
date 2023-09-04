@@ -11,7 +11,7 @@ import java.net.InetAddress;
 @SuperBuilder
 @Getter
 @Setter
-public class Test implements Serializable {
+public class TestConnection implements Serializable {
 
     private String uuid;
     private String timestamp;

@@ -1,6 +1,6 @@
 package core.ms.client.app.service.test;
 
-import core.ms.client.infra.domain.Test;
+import core.ms.client.infra.domain.TestConnection;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
@@ -10,9 +10,9 @@ import java.util.*;
 @Service
 public class TestService {
 
-    public List<Test> test() throws UnknownHostException {
+    public List<TestConnection> test() throws UnknownHostException {
 
-       Test test =  Test
+       TestConnection test =  TestConnection
                 .builder()
                 .uuid(UUID.randomUUID().toString())
                 .address(InetAddress.getLocalHost())

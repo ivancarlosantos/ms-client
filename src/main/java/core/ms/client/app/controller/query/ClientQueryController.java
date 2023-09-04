@@ -2,7 +2,6 @@ package core.ms.client.app.controller.query;
 
 import core.ms.client.app.dto.response.ClientResponse;
 import core.ms.client.app.service.query.ClientServiceQuery;
-import core.ms.client.cross.utils.ValidationParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,12 +1,14 @@
 package core.ms.client;
 
 import core.ms.client.infra.domain.Client;
+import core.ms.client.infra.repository.ClientRepository;
+import core.ms.client.status.ClientStatus;
+import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -14,13 +16,24 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @Slf4j
 @Testcontainers
-@SpringBootTest
-public class ClientTestConfiguration {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class ClientConfigurationTest {
+
+    @LocalServerPort
+    private Integer port;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Container
-    static PostgreSQLContainer container = new PostgreSQLContainer(
+    static PostgreSQLContainer<?> container = new PostgreSQLContainer<>(
             DockerImageName.parse("postgres:11"));
 
     @DynamicPropertySource
@@ -36,6 +49,12 @@ public class ClientTestConfiguration {
         log.info("spring.datasource.driver-class-name {}", container.getJdbcDriverInstance());
     }
 
+    @BeforeEach
+    void setUp() {
+        RestAssured.baseURI = "http://localhost:" + port;
+        clientRepository.deleteAll();
+    }
+
     @BeforeAll
     static void beforeAll() {
         container.start();
@@ -47,16 +66,37 @@ public class ClientTestConfiguration {
     }
 
     @Test
-    void testNomeCliente() {
+    void testDomain() {
+        Long id = 1L;
+        String name = "name";
+        Integer age = 99;
+        String document = "12.345.678-00";
+        String nodeID = UUID.randomUUID().toString();
+        String status = ClientStatus.ATIVO.toString();
+
+        Client client = new Client(id, name, age, document, nodeID, status);
+
+        assertNotNull(client);
+        assertEquals(id, client.getId());
+        assertEquals(name, client.getName());
+        assertEquals(age, client.getAge());
+        assertEquals(document, client.getDocument());
+        assertEquals(nodeID, client.getNodeID());
+        assertEquals(status, client.getStatus());
+    }
+
+    @Test
+    void testNameClient() {
         Client p = new Client();
         p.setName("Fulano");
         Assertions.assertEquals("Fulano", p.getName());
     }
 
     @Test
-    void testNomeClienteNull() {
+    void testNameClientNull() {
         Client p = new Client();
         p.setName(null);
         Assertions.assertNull(p.getName());
     }
+
 }

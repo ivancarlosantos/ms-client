@@ -1,7 +1,7 @@
 package core.ms.client.app.controller.test;
 
 import core.ms.client.app.service.test.TestService;
-import core.ms.client.infra.domain.Test;
+import core.ms.client.infra.domain.TestConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class TestController {
     private TestService testService;
 
     @GetMapping(path = "/test")
-    public ResponseEntity<List<Test>> test() throws UnknownHostException {
+    public ResponseEntity<List<TestConnection>> test() throws UnknownHostException {
         return ResponseEntity.status(HttpStatus.OK).body(testService.test());
     }
 }
