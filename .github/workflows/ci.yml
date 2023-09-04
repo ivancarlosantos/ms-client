@@ -18,7 +18,7 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn -B package -X -DskipTests --file pom.xml
+        run: mvn -B package -X --file pom.xml
 
   version_verify:
     needs: [build]
@@ -48,7 +48,7 @@ jobs:
         run: docker --version
 
       - name: Build with Maven
-        run: mvn -B package -X -DskipTests --file pom.xml
+        run: mvn -B package -X --file pom.xml
 
   QA-Test:
     needs: [build, version_verify]
@@ -64,7 +64,7 @@ jobs:
 
       - name: Test Application
         run: |
-          mvn clean verify -DskipTests
+          mvn clean verify
           ls -lha
           docker run -d --name=nginx -p 80:80 nginx:latest
 
@@ -81,7 +81,7 @@ jobs:
           cache: 'maven'
 
       - name: Test Application
-        run: mvn clean verify -DskipTests
+        run: mvn clean verify
 
   deploy:
     needs: [tests]
@@ -97,13 +97,13 @@ jobs:
 
       - name: Deploy Application
         run: |
-          mvn clean install -DskipTests
-          mvn package -DskipTests
+          mvn clean install
+          mvn package
 
       - name: Deploy Application
         run: |
-          mvn clean install -DskipTests
-          mvn package -DskipTests
+          mvn clean install
+          mvn package
 
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
