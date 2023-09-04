@@ -81,7 +81,9 @@ jobs:
           cache: 'maven'
 
       - name: Test Application
-        run: mvn clean verify
+        run: |
+          mvn clean verify
+          mvn test
 
   deploy:
     needs: [tests]
