@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ClientServiceQuery {
+public class ClientQueryService {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -31,16 +31,15 @@ public class ClientServiceQuery {
         List<Client> clientDomain = clientRepository
                 .findAll()
                 .stream()
-                .filter(c->c.getStatus().equals(ClientStatus.ATIVO.toString()))
+                .filter(c -> c.getStatus().equals(ClientStatus.ATIVO.toString()))
                 .toList();
-
-        Type listType = new TypeToken<List<ClientResponse>>(){}.getType();
+        Type listType = new TypeToken<List<ClientResponse>>() {}.getType();
         return mapper.map(clientDomain, listType);
     }
 
-    public ClientResponse findByID(String value){
-        Long id = ValidationParameter.validateParamLong(value);
-        Optional<Client> find = Optional.of(clientRepository.findById(id).orElseThrow(() -> new BusinessException("Client ID: "+id+" NOT FOUND")));
+    public ClientResponse findByID(String value) {
+        Long id = ValidationParameter.validate(value);
+        Optional<Client> find = Optional.of(clientRepository.findById(id).orElseThrow(() -> new BusinessException("Client ID: " + id + " NOT FOUND")));
         return mapper.map(find.get(), ClientResponse.class);
     }
 }

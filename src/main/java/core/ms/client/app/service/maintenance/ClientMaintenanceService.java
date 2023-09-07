@@ -9,14 +9,12 @@ import core.ms.client.infra.domain.Client;
 import core.ms.client.infra.domain.Token;
 import core.ms.client.infra.repository.ClientRepository;
 import core.ms.client.status.ClientStatus;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Slf4j
 @Service
 public class ClientMaintenanceService {
 
@@ -29,7 +27,7 @@ public class ClientMaintenanceService {
     @Autowired
     private ModelMapper mapper;
 
-    public ClientResponse save(ClientRequest request){
+    public ClientResponse save(ClientRequest request) {
         Token token = tokenRequest.generateToken();
         Client client = Client.builder()
                 .name(request.getName())
@@ -42,19 +40,19 @@ public class ClientMaintenanceService {
         return mapper.map(client, ClientResponse.class);
     }
 
-    public ClientResponse clientStatus(String value, String status){
-        Long id = ValidationParameter.validateParamLong(value);
+    public ClientResponse clientStatus(String value, String status) {
+        Long id = ValidationParameter.validate(value);
         Optional<Client> findClient = Optional
                 .ofNullable(clientRepository
                         .findById(id)
-                        .orElseThrow(() -> new BusinessException("Client ID: "+id+" NOT FOUND")));
+                        .orElseThrow(() -> new BusinessException("Client ID: " + id + " NOT FOUND")));
 
-        if (findClient.get().getStatus().equals(ClientStatus.ATIVO.toString())){
+        if (findClient.get().getStatus().equals(ClientStatus.ATIVO.toString())) {
             findClient.get().setStatus(status);
             clientRepository.save(findClient.get());
         }
 
-        if (findClient.get().getStatus().equals(ClientStatus.INATIVO.toString())){
+        if (findClient.get().getStatus().equals(ClientStatus.INATIVO.toString())) {
             findClient.get().setStatus(status);
             clientRepository.save(findClient.get());
         }
@@ -63,9 +61,9 @@ public class ClientMaintenanceService {
     }
 
     public ClientResponse update(String value, ClientRequest clientRequest) {
-        Long id = ValidationParameter.validateParamLong(value);
+        Long id = ValidationParameter.validate(value);
         Client client = clientRepository.findById(id).
-                orElseThrow(() -> new BusinessException("Id not Found"));
+                orElseThrow(() -> new BusinessException("ID NOT FOUND"));
 
         client.setName(clientRequest.getName());
         client.setAge(clientRequest.getAge());

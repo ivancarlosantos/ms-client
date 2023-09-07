@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/domain/client")
 public class ClientMaintenanceController {
+
     @Autowired
     private ClientMaintenanceService clientService;
-
 
     @PostMapping
     public ResponseEntity<ClientResponse> insert(@RequestBody ClientRequest clientRequest) {

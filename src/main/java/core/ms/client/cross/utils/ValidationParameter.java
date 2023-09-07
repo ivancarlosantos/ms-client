@@ -7,7 +7,7 @@ public class ValidationParameter {
 
     private ValidationParameter() {}
 
-    public static Long validateParamLong(String value) {
+    public static Long validate(String value) {
         try {
             return Long.parseLong(value);
         } catch (NumberFormatException ex) {

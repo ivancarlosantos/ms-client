@@ -37,7 +37,7 @@ class ClientConfigurationTest {
             DockerImageName.parse("postgres:11"));
 
     @DynamicPropertySource
-    static void properties(DynamicPropertyRegistry registry){
+    static void properties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.driver-class-name", () -> "org.postgresql.Driver");
         registry.add("spring.datasource.url", container::getJdbcUrl);
         registry.add("spring.datasource.username", container::getUsername);
